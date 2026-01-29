@@ -1,0 +1,58 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(pytest*)",
+      "Bash(python*)",
+      "Bash(pip*)",
+      "Bash(ls*)",
+      "Bash(cat*)",
+      "Bash(head*)",
+      "Bash(tail*)",
+      "Bash(wc*)",
+      "Bash(find*)",
+      "Bash(grep*)",
+      "Bash(echo*)",
+      "Bash(cd*)",
+      "Bash(pwd)"
+    ],
+    "ask": [
+      "Bash(git add*)",
+      "Bash(git commit*)",
+      "Bash(git push*)",
+      "Bash(rm*)",
+      "Bash(mkdir*)",
+      "Bash(mv*)",
+      "Bash(cp*)",
+      "Bash(gh*)"
+    ],
+    "deny": [
+      "Bash(*secrets*)",
+      "Bash(*password*)",
+      "Bash(*token*)",
+      "Bash(sudo*)",
+      "Bash(rm -rf /)*",
+      "Bash(git push --force*)"
+    ],
+    "defaultMode": "bypassPermissions"
+  },
+  "hooks": {
+    "SessionStart": [
+      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_start.sh"
+    ],
+    "SessionEnd": [
+      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_end.sh"
+    ],
+    "UserPromptSubmit": [
+      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/user_prompt_submit.sh"
+    ]
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causal-inference-mastery/facure_augment/section.schema.json",
+  "title": "Augmented Section Notebook",
+  "description": "Schema for augmented Facure textbook section notebooks",
+  "type": "object",
+  "required": ["metadata", "sections"],
+  "properties": {
+    "metadata": {
+      "$ref": "#/$defs/SectionMetadata"
+    },
+    "sections": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/NotebookSection" },
+      "minItems": 4,
+      "description": "Must have at least: intuition, formal, numeric, implementation"
+    }
+  },
+  "$defs": {
+    "SectionMetadata": {
+      "type": "object",
+      "required": [
+        "chapter_number",
+        "section_number",
+        "title",
+        "facure_source",
+        "version",
+        "last_validated"
+      ],
+      "properties": {
+        "chapter_number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 30,
+          "description": "Facure chapter number (1-25) or appendix (26-30)"
+        },
+        "section_number": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20,
+          "description": "Section within chapter"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 5,
+          "description": "Section title"
+        },
+        "facure_source": {
+          "type": "string",
+          "pattern": "^[0-9]{2}-[A-Za-z-]+\\.ipynb$|^[A-Za-z-]+\\.ipynb$",
+          "description": "Original Facure notebook filename"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "description": "Semantic version"
+        },
+        "last_validated": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of last successful test run"
+        },
+        "rigor_level": {
+          "type": "string",
+          "enum": ["core", "standard", "variable"],
+          "default": "standard",
+          "description": "Mathematical rigor level"
+        },
+        "implementation_modules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "causal_inference_mastery modules used"
+        },
+        "research_kb_sources": {
+          "type": "array",
+          "items": { "type": "string", "format": "uuid" },
+          "description": "research_kb source IDs cited"
+        },
+        "interview_prep_chapters": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "interview_prep_series chapters referenced"
+        },
+        "methodological_concerns": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^CONCERN-[0-9]+$"
+          },
+          "description": "Related methodological concerns"
+        }
+      }
+    },
+    "NotebookSection": {
+      "type": "object",
+      "required": ["type", "title"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "table_of_contents",
+            "facure_intuition",
+            "formal_treatment",
+            "numeric_demonstration",
+            "implementation",
+            "interview_appendix",
+            "references",
+            "methodological_concerns"
+          ],
+          "description": "Type of section"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Section heading"
+        },
+        "has_latex": {
+          "type": "boolean",
+          "default": false,
+          "description": "Contains LaTeX mathematical content"
+        },
+        "has_code": {
+          "type": "boolean",
+          "default": false,
+          "description": "Contains executable code cells"
+        },
+        "has_figures": {
+          "type": "boolean",
+          "default": false,
+          "description": "Produces figure outputs"
+        },
+        "interview_questions_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of interview questions (for interview_appendix)"
+        },
+        "collapsible_solutions": {
+          "type": "boolean",
+          "default": false,
+          "description": "Interview solutions use <details> tags"
+        },
+        "research_kb_citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": { "type": "string", "format": "uuid" },
+              "page": { "type": "integer" },
+              "footnote_number": { "type": "integer" }
+            }
+          },
+          "description": "Citations in this section"
+        }
+      }
+    }
+  }
+}
