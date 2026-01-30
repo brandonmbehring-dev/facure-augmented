@@ -46,13 +46,34 @@
   },
   "hooks": {
     "SessionStart": [
-      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_start.sh"
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_start.sh"
+          }
+        ]
+      }
     ],
     "SessionEnd": [
-      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_end.sh"
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/brandon_behring/Claude/lever_of_archimedes/hooks/session_end.sh"
+          }
+        ]
+      }
     ],
     "UserPromptSubmit": [
-      "/home/brandon_behring/Claude/lever_of_archimedes/hooks/user_prompt_submit.sh"
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/home/brandon_behring/Claude/lever_of_archimedes/hooks/user_prompt_submit.sh"
+          }
+        ]
+      }
     ]
   }
 }
